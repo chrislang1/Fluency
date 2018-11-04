@@ -170,7 +170,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUu-S9-IkH">
                                                 <rect key="frame" x="0.0" y="0.0" width="212" height="143.5"/>
-                                                <color key="backgroundColor" red="0.33000000000000002" green="0.71999999999999997" blue="0.62" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.81000000000000005" blue="0.75" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <state key="normal" title="Syllable">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,7 +186,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3a-aU-oWP">
                                                 <rect key="frame" x="0.0" y="159.5" width="212" height="143"/>
-                                                <color key="backgroundColor" red="0.23999999999999999" green="0.53000000000000003" blue="0.81000000000000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.95999999999999996" green="0.64000000000000001" blue="0.66000000000000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <state key="normal" title="Stutter">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
