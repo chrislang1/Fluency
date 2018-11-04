@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var syllableButton: UIButton!
     @IBOutlet weak var stutterButton: UIButton!
     
+    let impact = UIImpactFeedbackGenerator(style: .medium)
     
     var timer: Timer?
     var timeElapsed = 0.0
@@ -69,6 +70,7 @@ class MainViewController: UIViewController {
                 self.updateTimeLabels()
             })
             startLabel.text = "Pause"
+            startIconImageView.image = UIImage.init(named: "Pause")
             buttonEnable()
             timerLabel.textColor = .black
             UIView.animate(withDuration: 0.3) {
@@ -80,10 +82,11 @@ class MainViewController: UIViewController {
                 self.timer = nil
             }
             startLabel.text = "Start"
+            startIconImageView.image = UIImage.init(named: "Start")
             buttonDisable()
-            timerLabel.textColor = .red
+            timerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
             pausedLabel.text = "Paused"
-            pausedLabel.textColor = .red
+            pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
             UIView.animate(withDuration: 0.3) {
                 self.pausedLabel.alpha = 1
             }
@@ -94,11 +97,13 @@ class MainViewController: UIViewController {
     
     @IBAction func syllableButtonPressed(_ sender: UIButton) {
         syllableCount += 1
+        impact.impactOccurred()
     }
     
     @IBAction func stutterButtonPressed(_ sender: UIButton) {
         stutterCount += 1
         syllableCount += 1
+        impact.impactOccurred()
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
@@ -113,8 +118,10 @@ class MainViewController: UIViewController {
         syllableCount = 0
         timerLabel.textColor = .black
         startLabel.text = "Start"
+        startIconImageView.image = UIImage.init(named: "Start")
         pausedLabel.text = "Cleared"
         pausedLabel.textColor = .lightGray
+        buttonDisable()
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 1
         }
@@ -133,10 +140,11 @@ class MainViewController: UIViewController {
     func updateSS(){
         if syllableCount > 0 {
             let ss = stutterCount/syllableCount
-            print("\(ss)")
+            //print("\(ss)")
             let roundedSS = (round(ss*1000)/1000)*100
-            ssLabel.text = "\(roundedSS)%"
-            print(roundedSS)
+            let formattedSS = String(format: "%.1f", roundedSS)
+            ssLabel.text = "\(formattedSS)%"
+            //print(roundedSS)
         } else if stutterCount == 0 {
             ssLabel.text = "-"
         }
