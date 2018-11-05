@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		834E8614218EEB9800C39EEF /* Fluency.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fluency.entitlements; sourceTree = "<group>"; };
 		83B2F8AA218BF31B00286AA3 /* Fluency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B2F8AD218BF31B00286AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83B2F8B2218BF31B00286AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		83B2F8AC218BF31B00286AA3 /* Fluency */ = {
 			isa = PBXGroup;
 			children = (
+				834E8614218EEB9800C39EEF /* Fluency.entitlements */,
 				83B2F8DB218BF3F400286AA3 /* Launch */,
 				83B2F8B1218BF31B00286AA3 /* Main.storyboard */,
 				83B2F8DC218C06EF00286AA3 /* MainViewController.swift */,
@@ -201,6 +203,11 @@
 				TargetAttributes = {
 					83B2F8A9218BF31B00286AA3 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					83B2F8BD218BF32000286AA3 = {
 						CreatedOnToolsVersion = 10.0;
@@ -440,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULJK2GMX23;
 				INFOPLIST_FILE = "$(SRCROOT)/Fluency/Launch/Info.plist";
@@ -449,6 +457,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.christopherlang.Fluency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULJK2GMX23;
 				INFOPLIST_FILE = "$(SRCROOT)/Fluency/Launch/Info.plist";
@@ -467,6 +477,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.christopherlang.Fluency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
