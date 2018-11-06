@@ -173,6 +173,17 @@ class MainViewController: UIViewController {
         stutterButton.alpha = 0.5
     }
     
+    //MARK: - Segue Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSettings"{
+            let destinationVC = segue.destination as! SetupSettingsViewController
+            destinationVC.delegate = self
+            UIView.animate(withDuration: 0.3) {
+                self.view.alpha = 0.5
+            }
+        }
+    }
+    
     
 }
 
