@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var stutterButton: UIButton!
     
     let impact = UIImpactFeedbackGenerator(style: .medium)
+    let defaults = UserDefaults.standard
     
     var timer: Timer?
     var timeElapsed = 0.0
@@ -97,13 +98,17 @@ class MainViewController: UIViewController {
     
     @IBAction func syllableButtonPressed(_ sender: UIButton) {
         syllableCount += 1
-        impact.impactOccurred()
+        if defaults.bool(forKey: "HapticFeedback") {
+          impact.impactOccurred()
+        }
     }
     
     @IBAction func stutterButtonPressed(_ sender: UIButton) {
         stutterCount += 1
         syllableCount += 1
-        impact.impactOccurred()
+        if defaults.bool(forKey: "HapticFeedback") {
+            impact.impactOccurred()
+        }
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
