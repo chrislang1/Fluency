@@ -40,14 +40,14 @@ class SettingsViewController: UIViewController {
     
     @IBAction func supportButtonPressed(_ sender: UIButton) {
         //Adjust with new URL
-        if let url = NSURL(string: "http://christopherlang.com.au/expenses/"){
+        if let url = NSURL(string: "http://christopherlang.com.au"){
             UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
         }
         
     }
     @IBAction func rateButtonPressed(_ sender: UIButton) {
         //Adjust for actual app id - links to expenses
-        if let url = URL(string: "itms-apps://itunes.apple.com/app/id1401279619"){
+        if let url = URL(string: "itms-apps://itunes.apple.com/app/id1441243948"){
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
