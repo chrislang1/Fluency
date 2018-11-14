@@ -94,7 +94,7 @@ class MainViewController: UIViewController {
             let sum = stutterCountValues.reduce(0, +)
             stutterCount = sum
             for x in stutterCountValues.indices {
-                stutterValueLabels[x].text = "\(stutterCountValues[x])"
+                stutterValueLabels[x].text = "\(Int(stutterCountValues[x]))"
             }
         }
     }
@@ -198,7 +198,7 @@ class MainViewController: UIViewController {
         syllableCount = 0
         stutterCountValues = [0,0,0,0,0]
         timerLabel.textColor = .black
-        timerLabel.textColor = .black
+        landscapeTimerLabel.textColor = .black
         startLabel.text = "Start"
         startIconImageView.image = UIImage.init(named: "Start")
         startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
@@ -222,6 +222,11 @@ class MainViewController: UIViewController {
     @IBAction func landscapeStutterButtonPressed(_ sender: UIButton) {
         stutterCountValues[sender.tag] += 1
     }
+    
+    @IBAction func landscapeSettingsPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToSettings", sender: self)
+    }
+    
     
     
     func updateTimeLabels(){

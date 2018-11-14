@@ -14,6 +14,7 @@ class SetupSettingsViewController: UIViewController {
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     var delegate: MainViewController?
     let window = UIApplication.shared.keyWindow
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,10 @@ class SetupSettingsViewController: UIViewController {
             containerViewHeight.constant = containerViewHeight.constant + bottomPadding
         }
         containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+        if UIDevice.current.orientation.isPortrait {
+            widthConstraint.constant = self.view.frame.width
+        }
     }
     
 
