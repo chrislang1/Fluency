@@ -26,6 +26,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var syllableButton: UIButton!
     @IBOutlet weak var stutterButton: UIButton!
     
+    @IBOutlet weak var portraitBasicModeView: UIView!
+    
+    
     //MARK: - Landscape Outlets
     @IBOutlet weak var startButtonLandscape: UIButton!
     @IBOutlet var stutterButtonArray: [UIButton]!
@@ -40,8 +43,12 @@ class MainViewController: UIViewController {
     
     @IBOutlet var stutterButtonLabels: [UILabel]!
     @IBOutlet var stutterValueLabels: [UILabel]!
+    @IBOutlet var labelColourTabs: [UIView]!
     
     @IBOutlet weak var landscapeSyllableButton: UIButton!
+    
+    @IBOutlet weak var landscapeAdvancedModeView: UIView!
+    
     
     
     //MARK: - Landscape/Portrait Views
@@ -110,8 +117,13 @@ class MainViewController: UIViewController {
         checkOrientation()
         viewSetup()
         setupLandscapeLabels()
+        buttonPadding()
+        tabColourSetup()
+        setupModeView(view: portraitBasicModeView)
+        setupModeView(view: landscapeAdvancedModeView)
     }
     
+    //MARK: - Setup Functions
     func viewSetup(){
         buttonDisable()
         pausedLabel.alpha = 0
@@ -120,8 +132,45 @@ class MainViewController: UIViewController {
     }
     
     func setupLandscapeLabels(){
-        for x in stutterButtonLabels.indices {
-            stutterButtonLabels[x].text = stutterButtonArray[x].titleLabel?.text
+        for x in stutterButtonArray.indices {
+            let buttonTag = stutterButtonArray[x].tag
+            for y in stutterButtonLabels.indices {
+                if stutterButtonLabels[y].tag == buttonTag {
+                    stutterButtonLabels[y].text = stutterButtonArray[x].titleLabel?.text
+                }
+            }
+            
+        }
+    }
+    
+    func buttonPadding(){
+        for x in stutterButtonArray.indices {
+            stutterButtonArray[x].contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+        }
+    }
+    
+    func tabColourSetup(){
+        for x in labelColourTabs.indices {
+            labelColourTabs[x].layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    
+    func setupModeView(view: UIView){
+        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
+        view.layer.shadowOpacity = 0.12
+        view.layer.shadowRadius = 8
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.alpha = 0
+    }
+    
+    func modeViewFade(view: UIView){
+        UIView.animate(withDuration: 0.5) {
+            view.alpha = 1
+        }
+        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            UIView.animate(withDuration: 0.5) {
+                view.alpha = 0
+            }
         }
     }
     
@@ -130,42 +179,48 @@ class MainViewController: UIViewController {
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
         if startLabel.text == "Start" {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
-                self.timeElapsed += 0.01
-                self.updateTimeLabels()
-            })
-            startLabel.text = "Pause"
-            startIconImageView.image = UIImage.init(named: "Pause")
-            startButtonLandscape.setImage(UIImage.init(named: "Pause"), for: .normal)
-            buttonEnable()
-            timerLabel.textColor = .black
-            landscapeTimerLabel.textColor = .black
-            UIView.animate(withDuration: 0.3) {
-                self.pausedLabel.alpha = 0
-                self.landscapePausedLabel.alpha = 0
-            }
+            start()
         } else if startLabel.text == "Pause" {
-            if let timer = timer {
-                timer.invalidate()
-                self.timer = nil
-            }
-            startLabel.text = "Start"
-            startIconImageView.image = UIImage.init(named: "Start")
-            startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
-            buttonDisable()
-            timerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-            landscapeTimerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-            pausedLabel.text = "Paused"
-            landscapePausedLabel.text = "Paused"
-            pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-            landscapePausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-            UIView.animate(withDuration: 0.3) {
-                self.pausedLabel.alpha = 1
-                self.landscapePausedLabel.alpha = 1
-            }
+            pause()
         }
-        
-        
+    }
+    
+    func start(){
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
+            self.timeElapsed += 0.01
+            self.updateTimeLabels()
+        })
+        startLabel.text = "Pause"
+        startIconImageView.image = UIImage.init(named: "Pause")
+        startButtonLandscape.setImage(UIImage.init(named: "Pause"), for: .normal)
+        buttonEnable()
+        timerLabel.textColor = .black
+        landscapeTimerLabel.textColor = .black
+        UIView.animate(withDuration: 0.3) {
+            self.pausedLabel.alpha = 0
+            self.landscapePausedLabel.alpha = 0
+        }
+    }
+    
+    func pause(){
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
+        }
+        startLabel.text = "Start"
+        startIconImageView.image = UIImage.init(named: "Start")
+        startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
+        buttonDisable()
+        timerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        landscapeTimerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        pausedLabel.text = "Paused"
+        landscapePausedLabel.text = "Paused"
+        pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        landscapePausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        UIView.animate(withDuration: 0.3) {
+            self.pausedLabel.alpha = 1
+            self.landscapePausedLabel.alpha = 1
+        }
     }
     
     @IBAction func syllableButtonPressed(_ sender: UIButton) {
@@ -183,7 +238,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-        reset()
+        if syllableCount > 0 {
+            performSegue(withIdentifier: "goToClear", sender: self)
+        }
     }
     
     func reset(){
@@ -221,6 +278,9 @@ class MainViewController: UIViewController {
     
     @IBAction func landscapeStutterButtonPressed(_ sender: UIButton) {
         stutterCountValues[sender.tag] += 1
+        if defaults.bool(forKey: "HapticFeedback") {
+            impact.impactOccurred()
+        }
     }
     
     @IBAction func landscapeSettingsPressed(_ sender: UIButton) {
@@ -259,46 +319,46 @@ class MainViewController: UIViewController {
     }
     
     func buttonEnable(){
-        if UIDevice.current.orientation.isLandscape {
-            landscapeSyllableButton.isEnabled = true
-            landscapeSyllableButton.alpha = 1
-            
-            for x in stutterButtonArray.indices {
-                stutterButtonArray[x].isEnabled = true
-                stutterButtonArray[x].alpha = 1
-            }
-            
-        } else if UIDevice.current.orientation.isPortrait {
-            syllableButton.isEnabled = true
-            stutterButton.isEnabled = true
-            syllableButton.alpha = 1
-            stutterButton.alpha = 1
-        }
+        landscapeSyllableButton.isEnabled = true
+        landscapeSyllableButton.alpha = 1
         
+        for x in stutterButtonArray.indices {
+            stutterButtonArray[x].isEnabled = true
+            stutterButtonArray[x].alpha = 1
+        }
+
+        syllableButton.isEnabled = true
+        stutterButton.isEnabled = true
+        syllableButton.alpha = 1
+        stutterButton.alpha = 1
     }
     
     func buttonDisable(){
-        if UIDevice.current.orientation.isLandscape {
-            landscapeSyllableButton.isEnabled = false
-            landscapeSyllableButton.alpha = 0.5
-            
-            for x in stutterButtonArray.indices {
-                stutterButtonArray[x].isEnabled = false
-                stutterButtonArray[x].alpha = 0.5
-            }
-            
-        } else if UIDevice.current.orientation.isPortrait {
-            syllableButton.isEnabled = false
-            stutterButton.isEnabled = false
-            syllableButton.alpha = 0.5
-            stutterButton.alpha = 0.5
+        landscapeSyllableButton.isEnabled = false
+        landscapeSyllableButton.alpha = 0.5
+        
+        for x in stutterButtonArray.indices {
+            stutterButtonArray[x].isEnabled = false
+            stutterButtonArray[x].alpha = 0.5
         }
+        
+        syllableButton.isEnabled = false
+        stutterButton.isEnabled = false
+        syllableButton.alpha = 0.5
+        stutterButton.alpha = 0.5
     }
     
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSettings"{
             let destinationVC = segue.destination as! SetupSettingsViewController
+            destinationVC.delegate = self
+            UIView.animate(withDuration: 0.3) {
+                self.view.alpha = 0.5
+            }
+        } else if segue.identifier == "goToClear"{
+            pause()
+            let destinationVC = segue.destination as! SetupClearViewController
             destinationVC.delegate = self
             UIView.animate(withDuration: 0.3) {
                 self.view.alpha = 0.5
@@ -317,10 +377,12 @@ class MainViewController: UIViewController {
         if UIDevice.current.orientation.isLandscape {
             self.view = self.landscapeView
             viewSetup()
+            modeViewFade(view: landscapeAdvancedModeView)
             reset()
         } else if UIDevice.current.orientation.isPortrait {
             self.view = self.portraitView
             viewSetup()
+            modeViewFade(view: portraitBasicModeView)
             reset()
         }
     }
