@@ -56,6 +56,7 @@ class MainViewController: UIViewController {
     let impact = UIImpactFeedbackGenerator(style: .medium)
     let defaults = UserDefaults.standard
     
+    var bannerDown = false
     var timer: Timer?
     var timeElapsed = 0.0
     var syllableCount : Float = 0 {
@@ -163,8 +164,10 @@ class MainViewController: UIViewController {
     }
     
     func modeViewFade(view: UIView){
-        UIView.animate(withDuration: 0.5) {
-            view.alpha = 1
+        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+            UIView.animate(withDuration: 0.5) {
+                view.alpha = 1
+            }
         }
         _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             UIView.animate(withDuration: 0.5) {
@@ -379,14 +382,20 @@ class MainViewController: UIViewController {
             if timeElapsed > 0 {
                 pause()
             }
-            modeViewFade(view: landscapeAdvancedModeView)
+            if bannerDown {
+                modeViewFade(view: landscapeAdvancedModeView)
+            }
+            bannerDown = true
         } else if UIDevice.current.orientation.isPortrait {
             self.view = self.portraitView
             viewSetup()
             if timeElapsed > 0 {
                 pause()
             }
-            modeViewFade(view: portraitBasicModeView)
+            if bannerDown {
+               modeViewFade(view: portraitBasicModeView)
+            }
+            bannerDown = true
         }
     }
     
