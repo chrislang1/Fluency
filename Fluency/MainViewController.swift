@@ -28,7 +28,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var portraitBasicModeView: UIView!
     
-    
     //MARK: - Landscape Outlets
     @IBOutlet weak var startButtonLandscape: UIButton!
     @IBOutlet var stutterButtonArray: [UIButton]!
@@ -48,8 +47,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var landscapeSyllableButton: UIButton!
     
     @IBOutlet weak var landscapeAdvancedModeView: UIView!
-    
-    
     
     //MARK: - Landscape/Portrait Views
     @IBOutlet var portraitView: UIView!
@@ -128,7 +125,7 @@ class MainViewController: UIViewController {
         buttonDisable()
         pausedLabel.alpha = 0
         landscapePausedLabel.alpha = 0
-        stutterCountValues = [0,0,0,0,0]
+        //stutterCountValues = [0,0,0,0,0]
     }
     
     func setupLandscapeLabels(){
@@ -139,7 +136,9 @@ class MainViewController: UIViewController {
                     stutterButtonLabels[y].text = stutterButtonArray[x].titleLabel?.text
                 }
             }
-            
+        }
+        for x in stutterCountValues.indices {
+            stutterValueLabels[x].text = "\(Int(stutterCountValues[x]))"
         }
     }
     
@@ -238,7 +237,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-        if syllableCount > 0 {
+        if timeElapsed > 0 {
             performSegue(withIdentifier: "goToClear", sender: self)
         }
     }
@@ -377,13 +376,17 @@ class MainViewController: UIViewController {
         if UIDevice.current.orientation.isLandscape {
             self.view = self.landscapeView
             viewSetup()
+            if timeElapsed > 0 {
+                pause()
+            }
             modeViewFade(view: landscapeAdvancedModeView)
-            reset()
         } else if UIDevice.current.orientation.isPortrait {
             self.view = self.portraitView
             viewSetup()
+            if timeElapsed > 0 {
+                pause()
+            }
             modeViewFade(view: portraitBasicModeView)
-            reset()
         }
     }
     

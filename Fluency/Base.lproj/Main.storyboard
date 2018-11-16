@@ -251,10 +251,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Portrait Orientation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJk-MP-RSa">
-                                        <rect key="frame" x="51.5" y="26" width="135.5" height="22"/>
+                                        <rect key="frame" x="51.5" y="26" width="135.5" height="18"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="Xb0-zM-vzF"/>
-                                            <constraint firstAttribute="height" constant="22" id="nyy-Rk-uha"/>
+                                            <constraint firstAttribute="height" constant="18" id="nyy-Rk-uha"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="textColor" red="0.44" green="0.51000000000000001" blue="0.57999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -907,10 +906,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Landscape Orientation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-Aw-Rkm">
-                                    <rect key="frame" x="39.5" y="26" width="159.5" height="22"/>
+                                    <rect key="frame" x="39.5" y="26" width="159.5" height="18"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="22" id="PZE-Zi-pkt"/>
-                                        <constraint firstAttribute="height" constant="22" id="bE9-0n-Vrf"/>
+                                        <constraint firstAttribute="height" constant="18" id="bE9-0n-Vrf"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <color key="textColor" red="0.44" green="0.51000000000000001" blue="0.57999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
