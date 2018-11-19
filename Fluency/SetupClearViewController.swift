@@ -1,39 +1,42 @@
 //
-//  SetupSettingsViewController.swift
+//  SetupClearViewController.swift
 //  Fluency
 //
-//  Created by Chris Lang on 6/11/18.
+//  Created by Chris Lang on 15/11/18.
 //  Copyright © 2018 Christopher Lang. All rights reserved.
 //
 
 import UIKit
 
-class SetupSettingsViewController: UIViewController {
+class SetupClearViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var clearViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var clearViewWidth: NSLayoutConstraint!
+    
+    
     var delegate: MainViewController?
     let window = UIApplication.shared.keyWindow
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
         if let bottomPadding = self.window?.safeAreaInsets.bottom {
-            containerViewHeight.constant = containerViewHeight.constant + bottomPadding
+            clearViewHeight.constant = clearViewHeight.constant + bottomPadding
         }
         containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
         if UIDevice.current.orientation.isPortrait {
-            widthConstraint.constant = self.view.frame.width
+            clearViewWidth.constant = self.view.frame.width
         }
     }
     
 
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! SettingsViewController
+        let destinationVC = segue.destination as! ClearViewController
         destinationVC.delegate = self
     }
 
