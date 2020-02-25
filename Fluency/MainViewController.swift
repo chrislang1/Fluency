@@ -13,6 +13,11 @@ class MainViewController: UIViewController {
     //MARK: - Portrait Outlets
     @IBOutlet weak var pausedLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var minuteLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var msLabel: UILabel!
+    @IBOutlet weak var minuteDividerLabel: UILabel!
+    @IBOutlet weak var secondDividerLabel: UILabel!
     
     @IBOutlet weak var syllableCountLabel: UILabel!
     @IBOutlet weak var spmLabel: UILabel!
@@ -34,6 +39,11 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var landscapePausedLabel: UILabel!
     @IBOutlet weak var landscapeTimerLabel: UILabel!
+    @IBOutlet weak var landscapeMinuteLabel: UILabel!
+    @IBOutlet weak var landscapeSecondLabel: UILabel!
+    @IBOutlet weak var landscapeMsLabel: UILabel!
+    @IBOutlet weak var landscapeMinuteDividerLabel: UILabel!
+    @IBOutlet weak var landscapeSecondDividerLabel: UILabel!
     
     @IBOutlet weak var landscapeSyllableCountLabel: UILabel!
     @IBOutlet weak var landscapeSPMLabel: UILabel!
@@ -196,8 +206,7 @@ class MainViewController: UIViewController {
         startIconImageView.image = UIImage.init(named: "Pause")
         startButtonLandscape.setImage(UIImage.init(named: "Pause"), for: .normal)
         buttonEnable()
-        timerLabel.textColor = .black
-        landscapeTimerLabel.textColor = .black
+        colourLabelsForState(isPaused: false)
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 0
             self.landscapePausedLabel.alpha = 0
@@ -213,16 +222,47 @@ class MainViewController: UIViewController {
         startIconImageView.image = UIImage.init(named: "Start")
         startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
         buttonDisable()
-        timerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-        landscapeTimerLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        
         pausedLabel.text = "Paused"
         landscapePausedLabel.text = "Paused"
-        pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-        landscapePausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        
+        colourLabelsForState(isPaused: true)
+        
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 1
             self.landscapePausedLabel.alpha = 1
         }
+    }
+    
+    func colourLabelsForState(isPaused: Bool) {
+        let colour = isPaused ? UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0) : .black
+        
+        pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        landscapePausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        
+        timerLabel.textColor = colour
+        minuteLabel.textColor = colour
+        secondLabel.textColor = colour
+        msLabel.textColor = colour
+        minuteDividerLabel.textColor = colour
+        secondDividerLabel.textColor = colour
+        
+        landscapeTimerLabel.textColor = colour
+        landscapeMinuteLabel.textColor = colour
+        landscapeSecondLabel.textColor = colour
+        landscapeMsLabel.textColor = colour
+        landscapeMinuteDividerLabel.textColor = colour
+        landscapeSecondDividerLabel.textColor = colour
+    }
+    
+    func resetTimerLabels() {
+        minuteLabel.text = "00"
+        secondLabel.text = "00"
+        msLabel.text = "00"
+        
+        landscapeMinuteLabel.text = "00"
+        landscapeSecondLabel.text = "00"
+        landscapeMsLabel.text = "00"
     }
     
     @IBAction func syllableButtonPressed(_ sender: UIButton) {
@@ -256,8 +296,8 @@ class MainViewController: UIViewController {
         stutterCount = 0
         syllableCount = 0
         stutterCountValues = [0,0,0,0,0]
-        timerLabel.textColor = .black
-        landscapeTimerLabel.textColor = .black
+        colourLabelsForState(isPaused: false)
+        resetTimerLabels()
         startLabel.text = "Start"
         startIconImageView.image = UIImage.init(named: "Start")
         startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
@@ -289,10 +329,15 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "goToSettings", sender: self)
     }
     
-    
-    
+
     func updateTimeLabels(){
         timerStringValue = timeElapsed.minuteSecondsMS
+        minuteLabel.text = String(format:"%02d", timeElapsed.minute)
+        secondLabel.text = String(format:"%02d", timeElapsed.second)
+        msLabel.text = String(format:"%02d", timeElapsed.millisecond)
+        landscapeMinuteLabel.text = String(format:"%02d", timeElapsed.minute)
+        landscapeSecondLabel.text = String(format:"%02d", timeElapsed.second)
+        landscapeMsLabel.text = String(format:"%02d", timeElapsed.millisecond)
     }
     
     func updateSS(){
