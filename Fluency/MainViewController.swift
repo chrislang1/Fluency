@@ -444,7 +444,36 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - Share
+    func shareSessionData() {
+        let items = [createSessionData()]
+        let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(vc, animated: true)
+    }
     
+    func createSessionData() -> String {
+        let time = timeElapsed.minuteSecondsMS
+        let syllables = syllableCountLabel.text ?? ""
+        let stutters = stutterCountLabel.text ?? ""
+        let spmString = spmLabel.text ?? ""
+        let ssString = ssLabel.text ?? ""
+        
+        var stringArray = ["Time Elapsed: \(time)", "Syllables: \(syllables)", "Stutters: \(stutters)", "SPM: \(spmString)", "%SS: \(ssString)"]
+        
+        if self.view == self.landscapeView {
+            for x in stutterCountValues.indices {
+                let button = stutterButtonArray.first { $0.tag == x }
+                if let b = button, let title = b.title(for: .normal) {
+                    let stutterCount = "\(Int(stutterCountValues[x]))"
+                    stringArray.append("\(title): \(stutterCount)")
+                }
+            }
+        }
+        
+        var shareString = ""
+        stringArray.forEach { shareString =  shareString + $0 + "\n"}
+        return shareString
+    }
 }
 
 extension TimeInterval {
