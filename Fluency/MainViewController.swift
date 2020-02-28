@@ -31,6 +31,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var syllableButton: UIButton!
     @IBOutlet weak var stutterButton: UIButton!
     
+    @IBOutlet weak var shareButton: UIButton!
+    
     @IBOutlet weak var portraitBasicModeView: UIView!
     
     //MARK: - Landscape Outlets
@@ -55,6 +57,7 @@ class MainViewController: UIViewController {
     @IBOutlet var labelColourTabs: [UIView]!
     
     @IBOutlet weak var landscapeSyllableButton: UIButton!
+    @IBOutlet weak var landscapeShareButton: UIButton!
     
     @IBOutlet weak var landscapeAdvancedModeView: UIView!
     
@@ -136,7 +139,23 @@ class MainViewController: UIViewController {
         buttonDisable()
         pausedLabel.alpha = 0
         landscapePausedLabel.alpha = 0
-        //stutterCountValues = [0,0,0,0,0]
+        self.shareButton.alpha = 0
+        self.landscapeShareButton.alpha = 0
+        
+        checkLandscapeFontSize()
+    }
+    
+    func checkLandscapeFontSize() {
+        switch UIDevice.modelName{
+        case "iPhone 5s", "iPhone 5c", "iPhone 5", "iPhone 4s", "iPhone 4":
+            self.landscapeMsLabel.font = UIFont.systemFont(ofSize: 8)
+            self.landscapeSecondLabel.font = UIFont.systemFont(ofSize: 8)
+            self.landscapeMinuteLabel.font = UIFont.systemFont(ofSize: 8)
+            self.landscapeMinuteDividerLabel.font = UIFont.systemFont(ofSize: 8)
+            self.landscapeSecondDividerLabel.font = UIFont.systemFont(ofSize: 8)
+        default:
+            break
+        }
     }
     
     func setupLandscapeLabels(){
@@ -210,6 +229,8 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 0
             self.landscapePausedLabel.alpha = 0
+            self.shareButton.alpha = 0
+            self.landscapeShareButton.alpha = 0
         }
     }
     
@@ -231,6 +252,8 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 1
             self.landscapePausedLabel.alpha = 1
+            self.shareButton.alpha = 1
+            self.landscapeShareButton.alpha = 1
         }
     }
     
@@ -309,6 +332,8 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 1
             self.landscapePausedLabel.alpha = 1
+            self.shareButton.alpha = 0
+            self.landscapeShareButton.alpha = 0
         }
         _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
             UIView.animate(withDuration: 0.3) {
@@ -329,6 +354,9 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "goToSettings", sender: self)
     }
     
+    @IBAction func shareButton(_ sender: UIButton) {
+        shareSessionData()
+    }
 
     func updateTimeLabels(){
         timerStringValue = timeElapsed.minuteSecondsMS

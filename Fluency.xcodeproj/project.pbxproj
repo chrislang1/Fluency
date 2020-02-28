@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		836A7A9C2408F65600F23612 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A7A9B2408F65600F23612 /* UIDevice+ModelName.swift */; };
 		83A8EE7B219D7DE2005CD6D1 /* SetupClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8EE7A219D7DE2005CD6D1 /* SetupClearViewController.swift */; };
 		83A8EE7D219D8279005CD6D1 /* ClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8EE7C219D8279005CD6D1 /* ClearViewController.swift */; };
 		83B2F8AE218BF31B00286AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F8AD218BF31B00286AA3 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		834E8614218EEB9800C39EEF /* Fluency.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fluency.entitlements; sourceTree = "<group>"; };
+		836A7A9B2408F65600F23612 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		83A8EE7A219D7DE2005CD6D1 /* SetupClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupClearViewController.swift; sourceTree = "<group>"; };
 		83A8EE7C219D8279005CD6D1 /* ClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearViewController.swift; sourceTree = "<group>"; };
 		83B2F8AA218BF31B00286AA3 /* Fluency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluency.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 				83B2F8DC218C06EF00286AA3 /* MainViewController.swift */,
 				83F93C1621910F2200A85169 /* SettingsViewController.swift */,
 				83A8EE7A219D7DE2005CD6D1 /* SetupClearViewController.swift */,
+				836A7A9B2408F65600F23612 /* UIDevice+ModelName.swift */,
 			);
 			path = Fluency;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				83B2F8AE218BF31B00286AA3 /* AppDelegate.swift in Sources */,
 				83B2F8DD218C06EF00286AA3 /* MainViewController.swift in Sources */,
 				83F93C1721910F2200A85169 /* SettingsViewController.swift in Sources */,
+				836A7A9C2408F65600F23612 /* UIDevice+ModelName.swift in Sources */,
 				83A8EE7B219D7DE2005CD6D1 /* SetupClearViewController.swift in Sources */,
 				83A8EE7D219D8279005CD6D1 /* ClearViewController.swift in Sources */,
 				83F93C192191114900A85169 /* SetupSettingsViewController.swift in Sources */,
