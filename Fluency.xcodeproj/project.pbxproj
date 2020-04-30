@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83646D27245A954700AFEF0A /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83646D26245A954700AFEF0A /* Colours.xcassets */; };
 		836A7A9C2408F65600F23612 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A7A9B2408F65600F23612 /* UIDevice+ModelName.swift */; };
 		83A8EE7B219D7DE2005CD6D1 /* SetupClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8EE7A219D7DE2005CD6D1 /* SetupClearViewController.swift */; };
 		83A8EE7D219D8279005CD6D1 /* ClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8EE7C219D8279005CD6D1 /* ClearViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		834E8614218EEB9800C39EEF /* Fluency.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fluency.entitlements; sourceTree = "<group>"; };
+		83646D26245A954700AFEF0A /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colours.xcassets; sourceTree = "<group>"; };
 		836A7A9B2408F65600F23612 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		83A8EE7A219D7DE2005CD6D1 /* SetupClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupClearViewController.swift; sourceTree = "<group>"; };
 		83A8EE7C219D8279005CD6D1 /* ClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				83B2F8B4218BF32000286AA3 /* Assets.xcassets */,
 				83B2F8B6218BF32000286AA3 /* LaunchScreen.storyboard */,
 				83B2F8B9218BF32000286AA3 /* Info.plist */,
+				83646D26245A954700AFEF0A /* Colours.xcassets */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				83B2F8B8218BF32000286AA3 /* LaunchScreen.storyboard in Resources */,
 				83B2F8B5218BF32000286AA3 /* Assets.xcassets in Resources */,
 				83B2F8B3218BF31B00286AA3 /* Main.storyboard in Resources */,
+				83646D27245A954700AFEF0A /* Colours.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

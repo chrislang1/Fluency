@@ -188,7 +188,7 @@ class MainViewController: UIViewController {
         view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
         view.layer.shadowOpacity = 0.12
         view.layer.shadowRadius = 8
-        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowColor = UIColor(named: "modeDropShadow")?.cgColor ?? UIColor.black.cgColor
         view.alpha = 0
     }
     
@@ -258,10 +258,10 @@ class MainViewController: UIViewController {
     }
     
     func colourLabelsForState(isPaused: Bool) {
-        let colour = isPaused ? UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0) : .black
+        let colour = isPaused ? UIColor(named: "redText") : UIColor(named: "primaryText")
         
-        pausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
-        landscapePausedLabel.textColor = UIColor.init(red: 0.92, green: 0.34, blue: 0.26, alpha: 1.0)
+        pausedLabel.textColor = UIColor(named: "redText")
+        landscapePausedLabel.textColor = UIColor(named: "redText")
         
         timerLabel.textColor = colour
         minuteLabel.textColor = colour
@@ -325,9 +325,9 @@ class MainViewController: UIViewController {
         startIconImageView.image = UIImage.init(named: "Start")
         startButtonLandscape.setImage(UIImage.init(named: "Start"), for: .normal)
         pausedLabel.text = "Cleared"
-        pausedLabel.textColor = .lightGray
+        pausedLabel.textColor = UIColor(named: "secondaryText")
         landscapePausedLabel.text = "Cleared"
-        landscapePausedLabel.textColor = .lightGray
+        landscapePausedLabel.textColor = UIColor(named: "secondaryText")
         buttonDisable()
         UIView.animate(withDuration: 0.3) {
             self.pausedLabel.alpha = 1
